@@ -1,3 +1,4 @@
+
 export async function registerUser() {
     const name = document.getElementById('name').value;
     const username = document.getElementById('username').value;
@@ -9,19 +10,28 @@ export async function registerUser() {
         password: password
     };
 
-    const response = await fetch('http://localhost:8080/users/register', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userData)
-    });
+    try {
+        const response = await fetch('http://localhost:8080/users/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        });
 
-    if (!response.ok) {
-        throw new Error('Ocorreu um erro');
+        if (!response.ok) {
+            throw new Error('Ocorreu um erro');
+        }
+
+        const data = await response.json();
+
+        setTimeout(() => {
+            window.location.href = './main.html';
+        }, 3000);
+
+        console.log(data);
+    } catch (error) {
+        console.error('Ocorreu um erro na operação fetch:', error);
     }
-
-    const data = await response.json();
-    alert('User created successfully');
-    console.log(data);
 }
+
