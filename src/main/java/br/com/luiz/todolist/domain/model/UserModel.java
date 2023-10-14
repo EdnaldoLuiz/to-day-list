@@ -1,4 +1,4 @@
-package br.com.luiz.todolist.model;
+package br.com.luiz.todolist.domain.model;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -22,7 +22,7 @@ public class UserModel {
     @Column(unique = true)
     private String username;
     
-    private String name;
+    private String email;
     private String password;
 
     @CreationTimestamp

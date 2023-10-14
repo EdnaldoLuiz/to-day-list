@@ -1,4 +1,4 @@
-package br.com.luiz.todolist.controller;
+package br.com.luiz.todolist.domain.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
-import br.com.luiz.todolist.model.UserModel;
-import br.com.luiz.todolist.repository.IUserRepository;
+import br.com.luiz.todolist.domain.model.UserModel;
+import br.com.luiz.todolist.domain.repository.IUserRepository;
 
 @RestController
 @RequestMapping("/users")

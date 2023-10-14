@@ -1,4 +1,4 @@
-package br.com.luiz.todolist.config;
+package br.com.luiz.todolist.infra.config;
 
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;

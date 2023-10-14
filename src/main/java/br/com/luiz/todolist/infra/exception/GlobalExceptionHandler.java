@@ -1,4 +1,4 @@
-package br.com.luiz.todolist.exception;
+package br.com.luiz.todolist.infra.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

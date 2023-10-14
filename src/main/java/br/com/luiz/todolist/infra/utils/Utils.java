@@ -1,4 +1,4 @@
-package br.com.luiz.todolist.utils;
+package br.com.luiz.todolist.infra.utils;
 
 import java.beans.PropertyDescriptor;
 import java.util.HashSet;

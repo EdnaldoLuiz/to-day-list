@@ -1,4 +1,4 @@
-package br.com.luiz.todolist.controller;
+package br.com.luiz.todolist.domain.controller;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,16 +15,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.luiz.todolist.model.TaskModel;
-import br.com.luiz.todolist.repository.ITaskRepository;
-import br.com.luiz.todolist.utils.Utils;
+import br.com.luiz.todolist.domain.model.TaskModel;
+import br.com.luiz.todolist.domain.repository.ITaskRepository;
+import br.com.luiz.todolist.infra.utils.Utils;
 import jakarta.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/tasks")
 @SuppressWarnings("rawtypes")
 public class TaskController {
-  
+
   @Autowired
   private ITaskRepository taskRepository;
 
