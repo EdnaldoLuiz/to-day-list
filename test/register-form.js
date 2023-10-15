@@ -1,4 +1,3 @@
-
 export async function registerUser() {
     const name = document.getElementById('name').value;
     const username = document.getElementById('username').value;
