@@ -1,0 +1,52 @@
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Logar</title>
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <link rel="stylesheet" href="./css/style.css">
+        <link rel="stylesheet" href="./css/auth.css">
+    </head>
+
+    <body>
+
+        <body class="align">
+
+            <div class="grid">
+
+                <form method="POST" class="form login">
+
+                    <div class="form__field">
+                        <label for="login__username"><i class="fas fa-user"></i><span class="hidden">Username</span></label>
+                        <input id="username" type="text" name="username" class="form__input" placeholder="Username"
+                            required>
+                    </div>
+
+                    <div class="form__field">
+                        <label for="login__email"><i class="fas fa-envelope"></i><span class="hidden">Email</span></label>
+                        <input id="email" type="email" name="email" class="form__input" placeholder="Email"
+                            required>
+                    </div>
+
+                    <div class="form__field">
+                        <label for="login__password"><i class="fas fa-lock"></i><span class="hidden">Password</span></label>
+                        <input  id="password" type="password" name="password" class="form__input"
+                            placeholder="Password" required>
+                    </div>
+
+                    <div class="form__field">
+                        <button type="button" onclick="registerUser()">Register</button>
+                    </div>
+
+                </form>
+            </div>
+        </body>
+        <script src="./js/register-form.js"></script>
+    </body>
+
+    </html>
