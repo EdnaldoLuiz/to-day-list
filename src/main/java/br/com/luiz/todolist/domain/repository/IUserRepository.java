@@ -8,5 +8,5 @@ import br.com.luiz.todolist.domain.model.UserModel;
 
 public interface IUserRepository extends JpaRepository<UserModel, UUID> {
 
-    UserModel findByUsername(String username);
+    UserModel findByEmail(String email);
 }
