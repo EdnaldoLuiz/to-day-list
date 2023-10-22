@@ -1,0 +1,64 @@
+.task {
+    grid-area: task;
+}
+
+#tasks {
+    font-size: 1.4rem;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#tasks li {
+    padding: 10px;
+    border-bottom: 1px solid #383636;
+}
+
+.taskItem {
+    display: flex;
+    align-items: center;
+    border: 1px solid #383636;
+    padding: 10px;
+    margin: .8rem;
+    border-radius: .5rem;
+}
+
+.taskDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    color: rgb(192, 192, 192);
+}
+
+.taskCheckbox {
+    margin: 0 15px 0 10px;
+    transform: scale(1.5);
+}
+
+.taskTitle {
+    font-weight: bold;
+    font-size: 1.6rem;
+    margin-right: 10px;
+}
+
+.taskDescription {  
+    font-size: 1.2rem;
+}
+
+.taskPriorityLow {
+    background-color: rgba(88, 203, 65, 0.195);
+    border: 2px solid rgb(60, 144, 43, 0.5);
+}
+
+.taskPriorityMedium {
+    background-color: rgba(185, 203, 65, 0.195);
+    border: 2px solid rgba(127, 144, 43, 0.5);
+}
+
+.taskPriorityHigh {
+    background-color: rgba(203, 65, 65, 0.195);
+    border: 2px solid rgba(144, 43, 43, 0.5);
+}

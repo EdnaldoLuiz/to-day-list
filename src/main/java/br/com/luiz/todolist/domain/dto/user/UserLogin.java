@@ -1,5 +1,3 @@
 package br.com.luiz.todolist.domain.dto.user;
 
-public class UserLogin {
-    
-}
+public record UserLogin(String login, String password) {}

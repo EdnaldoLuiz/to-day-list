@@ -1,39 +1,63 @@
 package br.com.luiz.todolist.domain.model;
 
-import java.time.LocalDateTime;
-import java.util.UUID;
-
-import org.hibernate.annotations.CreationTimestamp;
-
-import br.com.luiz.todolist.domain.dto.user.UserRegister;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-@Data
-@Entity(name = "tb_users")
+import java.util.Collection;
+import java.util.List;
+
+@Table(name = "tb_users")
+@Entity(name = "Usuario")
+@Getter
 @NoArgsConstructor
-public class UserModel {
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
+public class UserModel implements UserDetails {
 
     @Id
-    @GeneratedValue(generator = "UUID")
-    private UUID     id;
-        
-    @Column(unique = true)
-    private String email;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String login;
+    private String senha;
 
-    private String username;
-    private String password;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("Usuario"));
+    }
 
-    @CreationTimestamp
-    private LocalDateTime createdAt;
+    @Override
+    public String getPassword() {
+        return senha;
+    }
 
-    public UserModel(UserRegister register) {
-        this.email = register.email();
-        this.username = register.username();
-        this.password = register.password();
+    @Override
+    public String getUsername() {
+        return login;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 }

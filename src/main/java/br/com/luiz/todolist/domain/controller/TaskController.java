@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.luiz.todolist.domain.dto.task.TaskRequest;
 import br.com.luiz.todolist.domain.model.TaskModel;
 import br.com.luiz.todolist.infra.service.TaskService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,8 +27,8 @@ public class TaskController {
     private TaskService taskService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody TaskModel taskModel, HttpServletRequest request) {
-        return taskService.createTask(taskModel, request);
+    public ResponseEntity<?> create(@RequestBody TaskRequest task) {
+        return taskService.createTask(task);
     }
 
     @GetMapping("/get")
@@ -38,4 +40,10 @@ public class TaskController {
     public ResponseEntity<?> update(@RequestBody TaskModel taskModel, HttpServletRequest request, @PathVariable UUID id) {
         return taskService.updateTask(taskModel, request, id);
     }
+
+    @DeleteMapping("/{title}")
+    public ResponseEntity<?> delete(@PathVariable String title) {
+        return taskService.deleteTask(title);
+    }
+
 }

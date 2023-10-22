@@ -5,14 +5,17 @@ import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import br.com.luiz.todolist.domain.dto.task.TaskRequest;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity(name = "tb_tasks")
+@NoArgsConstructor
 public class TaskModel {
 
   @Id
@@ -24,18 +27,18 @@ public class TaskModel {
   private String title;
   private LocalDateTime startAt;
   private LocalDateTime endAt;
-  private String priority;
+  private Priority priority;
 
   private UUID idUser;
 
   @CreationTimestamp
   private LocalDateTime createdAt;
 
-  public void setTitle(String title) throws Exception {
-    if (title.length() > 50) {
-      throw new Exception("O campo title deve conter no máximo 50 caracteres");
-    }
-
-    this.title = title;
+  public TaskModel(TaskRequest request) {
+    this.description = request.description();
+    this.title = request.title();
+    this.startAt = request.startAt();
+    this.endAt = request.endAt();
+    this.priority = request.priority();
   }
 }

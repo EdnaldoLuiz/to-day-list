@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/chat.css">
     <link rel="stylesheet" href="/css/task.css">
+    <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -28,27 +29,20 @@
         </div>
 
         <div class="header">
-            <h1>ola</h1>
+            <form class="add">
+                <input type="text" name="add" placeholder="Add a new task...">
+                <div class="input-buttons">
+                    <button class="add-todo"><i class="fas fa-plus"></i></button>
+                </div>
+            </form>
         </div>
 
         <div class="task">
             <div class="todoList">
-                <div class="cover-img">
-                    <div class="cover-inner">
-                        <h3>Your ToDo List</h3>
-                    </div>
-                </div>
                 <div class="content">
-                    <form class="add">
-                        <input type="text" name="add" placeholder="Add a new task...">
-                        <div class="input-buttons">
-                            <button class="add-todo"><i class="fas fa-plus"></i></button>
-                        </div>
-                    </form>
-                    <ul class="todos" id="tasks"></ul>
+                    <ul id="tasksList"></ul>
                 </div>
             </div>
-
         </div>
 
         <script src="/js/chat.js"></script>

@@ -9,4 +9,6 @@ import br.com.luiz.todolist.domain.model.TaskModel;
 
 public interface ITaskRepository extends JpaRepository<TaskModel, UUID> {
   List<TaskModel> findByIdUser(UUID idUser);
+
+  TaskModel deleteByTitle(String title);
 }

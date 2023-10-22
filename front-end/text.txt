@@ -1,0 +1,96 @@
+export function sendChat() {
+    const prompt = document.getElementById('promptInput').value;
+
+    fetch('/chat', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+        body: JSON.stringify({ prompt }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        const responseContainer = document.getElementById('responseContainer');
+        responseContainer.innerHTML = `<p>${data.content}</p>`;
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+    });
+
+    document.getElementById('chatForm').addEventListener('submit', function (event) {
+        event.preventDefault(); // Evita o envio padrão do formulário
+        sendChat();
+    });
+    
+}
+
+
+
+
+
+
+
+
+export function sendChat() {
+    const prompt = document.getElementById('promptInput').value;
+
+    fetch('/ask/chat', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',  // Indica que você está enviando JSON
+            'Accept': 'application/json',        // Indica que você espera uma resposta JSON
+        },
+        body: JSON.stringify({ prompt }),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro na solicitação');
+        }
+        return response.json();
+    })
+    .then(data => {
+        const responseContainer = document.getElementById('responseContainer');
+        responseContainer.innerHTML = `<p>${data.content}</p>`;
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+    });
+    
+    
+}
+
+
+
+
+  <aside class="chatbar">
+        <form id="chatForm">
+            <input type="text" id="promptInput" placeholder="Digite sua pergunta">
+            <button>Enviar</button>
+        </form>
+        <div id="responseContainer"></div>
+    </aside>
+
+
+
+        <form id="taskForm">
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description" required><br>
+
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" required><br>
+
+            <label for="priority">Priority:</label>
+            <input type="text" id="priority" name="priority" required><br>
+
+            <label for="startAt">Start Date and Time:</label>
+            <input type="datetime-local" id="startAt" name="startAt" required><br>
+
+            <label for="endAt">End Date and Time:</label>
+            <input type="datetime-local" id="endAt" name="endAt" required><br>
+
+            <label for="idUser">User ID:</label>
+            <input type="text" id="idUser" name="idUser" required><br>
+
+            <button type="button" onclick="createTask()">Create Task</button>
+        </form>

@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import br.com.luiz.todolist.domain.dto.task.TaskRequest;
 import br.com.luiz.todolist.domain.model.TaskModel;
 import br.com.luiz.todolist.domain.repository.ITaskRepository;
 import br.com.luiz.todolist.infra.utils.Utils;
@@ -20,24 +21,24 @@ public class TaskService {
     @Autowired
     private ITaskRepository taskRepository;
 
-    public ResponseEntity<?> createTask(TaskModel taskModel, HttpServletRequest request) {
-        var idUser = request.getAttribute("idUser");
-        taskModel.setIdUser((UUID) idUser);
+    public ResponseEntity<?> createTask(TaskRequest task) {
 
         var currentDate = LocalDateTime.now();
 
-        if (currentDate.isAfter(taskModel.getStartAt()) || currentDate.isAfter(taskModel.getEndAt())) {
+        if (currentDate.isAfter(task.startAt()) || currentDate.isAfter(task.endAt())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("A data de início/data de término deve ser maior do que a data atual");
         }
 
-        if (taskModel.getStartAt().isAfter(taskModel.getEndAt())) {
+        if (task.startAt().isAfter(task.endAt())) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("A data de início deve ser menor que a data de término");
         }
 
-        var task = this.taskRepository.save(taskModel);
-        return ResponseEntity.status(HttpStatus.OK).body(task);
+        TaskModel taskModel = new TaskModel(task);
+        var createdTask = this.taskRepository.save(taskModel);
+
+        return ResponseEntity.status(HttpStatus.OK).body(createdTask);
     }
 
     public List<TaskModel> getAllTasks() {
@@ -61,5 +62,10 @@ public class TaskService {
         Utils.copyNonNullProperties(taskModel, task);
         var taskUpdated = this.taskRepository.save(task);
         return ResponseEntity.ok().body(taskUpdated);
+    }   
+
+    public ResponseEntity<?> deleteTask(String title) {
+        var task = taskRepository.deleteByTitle(title);
+        return ResponseEntity.ok().body(task);
     }
 }
