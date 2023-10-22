@@ -1,14 +1,14 @@
 package br.com.luiz.todolist.domain.model;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import br.com.luiz.todolist.domain.dto.task.TaskRequest;
+import br.com.luiz.todolist.domain.dto.task.TaskRequestData;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,8 +19,8 @@ import lombok.NoArgsConstructor;
 public class TaskModel {
 
   @Id
-  @GeneratedValue(generator = "UUID")
-  private UUID id;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
   private String description;
 
   @Column(length = 50)
@@ -29,12 +29,12 @@ public class TaskModel {
   private LocalDateTime endAt;
   private Priority priority;
 
-  private UUID idUser;
+  private Long idUser;
 
   @CreationTimestamp
   private LocalDateTime createdAt;
 
-  public TaskModel(TaskRequest request) {
+  public TaskModel(TaskRequestData request) {
     this.description = request.description();
     this.title = request.title();
     this.startAt = request.startAt();
