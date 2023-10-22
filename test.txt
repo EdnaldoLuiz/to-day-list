@@ -14,3 +14,103 @@
 			<artifactId>java-jwt</artifactId>
 			<version>4.2.1</version>
 		</dependency>
+
+
+
+
+
+
+
+
+
+
+		public ResponseEntity<?> registedr(UserRegister userRegister) {
+
+        var passwordHashed = BCrypt.withDefaults().hashToString(12, userRegister.password().toCharArray());
+
+        UserModel userModel = new UserModel();
+        userModel.setLogin(userRegister.login());
+        userModel.setPassword(passwordHashed.toString());
+
+        var userCreated = userRepository.save(userModel);
+        return ResponseEntity.status(HttpStatus.CREATED).body(userCreated);
+    }
+
+
+
+	public ResponseEntity<?> updateTask(TaskModel taskModel, HttpServletRequest request, UUID id) {
+        var task = this.taskRepository.findById(id).orElse(null);
+
+        if (task == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Tarefa não encontrada");
+        }
+
+        var idUser = request.getAttribute("idUser");
+
+        Utils.copyNonNullProperties(taskModel, task);
+        var taskUpdated = this.taskRepository.save(task);
+        return ResponseEntity.ok().body(taskUpdated);
+    }   
+
+    public ResponseEntity<?> deleteTask(String title) {
+        var task = taskRepository.deleteByTitle(title);
+        return ResponseEntity.ok().body(task);
+    }
+
+
+	@PutMapping("/{id}")
+    public ResponseEntity<?> update(@RequestBody TaskModel taskModel, HttpServletRequest request, @PathVariable UUID id) {
+        return taskService.updateTask(taskModel, request, id);
+    }
+
+    @DeleteMapping("/{title}")
+    public ResponseEntity<?> delete(@PathVariable String title) {
+        return taskService.deleteTask(title);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     public ResponseEntity<?> updateTask(TaskModel taskModel, HttpServletRequest request, UUID id) {
+        var task = this.taskRepository.findById(id).orElse(null);
+
+        if (task == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Tarefa não encontrada");
+        }
+
+        var idUser = request.getAttribute("idUser");
+
+        if (!task.getIdUser().equals(idUser)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body("Usuário não tem permissão para alterar essa tarefa");
+        }
+
+        Utils.copyNonNullProperties(taskModel, task);
+        var taskUpdated = this.taskRepository.save(task);
+        return ResponseEntity.ok().body(taskUpdated);
+    }   
+
+    public ResponseEntity<?> deleteTask(String title) {
+        var task = taskRepository.deleteByTitle(title);
+        return ResponseEntity.ok().body(task);
+    }
+}

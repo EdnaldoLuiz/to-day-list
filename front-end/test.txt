@@ -184,3 +184,60 @@ button:hover {
             </aside>
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    async function registerUser() {
+    const password = document.getElementById('password').value;
+    const email = document.getElementById('email').value;
+
+    const userData = {
+        password: password,
+        login: email
+    };
+
+    try {
+        const response = await fetch('http://localhost:8080/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + JSON.parse(localStorage.getItem('token'))
+            },
+            body: JSON.stringify(userData)
+        });
+
+        if (!response.ok) {
+            throw new Error('Erro na solicitação. Status: ' + response.status);
+        }
+
+        const data = await response.json();
+        const token = localStorage.getItem('token');
+
+        localStorage.setItem('token', token);
+
+        setTimeout(() => {
+            window.location.href = './pages/main.html';
+        }, 3000);
+
+        console.log(data);
+    } catch (error) {
+        console.error('Ocorreu um erro na operação fetch:', error);
+
+        // Registre a stack trace completa no console
+        console.error(error.stack);
+        console.log(localStorage.getItem('token'));
+
+
+    }
+}

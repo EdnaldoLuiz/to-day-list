@@ -1,36 +1,55 @@
-const chatForm = document.getElementById('chatForm');
-const promptInput = document.getElementById('promptInput');
-const responseContainer = document.getElementById('responseContainer');
+const apiUrls = 'http://localhost:8080';
 
-async function sendChat() {
-    const prompt = promptInput.value;
+function checkToken() {
+    const token = localStorage.getItem('jwt_token');
+    if (token) {
+        return true;
+    }
+    return false;
+}
 
-    try {
-        const response = await fetch('http://localhost:8080/chat', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ prompt }),
-        });
+async function sendChatQuestion(question) {
+    if (checkToken()) {
+        try {
+            const requestData = {
+                prompt: question
+            };
 
-        if (!response.ok) {
-            throw new Error('Erro na solicitação');
+            const response = await fetch(`${apiUrls}/chat`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`
+                },
+                body: JSON.stringify(requestData),
+            });
+
+            if (response.ok) {
+                const responseData = await response.json();
+                const responseContainer = document.getElementById('responseContainer');
+
+                // Criar um novo elemento div para exibir a resposta com estilo semelhante ao código antigo
+                const message = document.createElement('div');
+                message.innerHTML = `<strong>Assistente: </strong>${responseData.content}`;
+                message.classList.add('chat-message'); // Adicione uma classe de estilo
+
+                responseContainer.appendChild(message);
+            } else {
+                console.error('Erro ao enviar pergunta:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Erro ao enviar pergunta:', error);
         }
-
-        const responseData = await response.json();
-
-        const message = document.createElement('div');
-        message.innerHTML = `<strong>Assistente: </strong>${responseData.content}`;
-        responseContainer.appendChild(message);
-    } catch (error) {
-        console.error('Erro:', error.message);
+    } else {
+        console.error('Token JWT não encontrado ou inválido. O usuário não está autenticado.');
     }
 }
 
-// Adicione um evento para prevenir o envio do formulário e chamar a função sendChat
+const chatForm = document.getElementById('chatForm');
 chatForm.addEventListener('submit', function (event) {
     event.preventDefault();
-    sendChat();
+    const promptInput = document.getElementById('promptInput');
+    const question = promptInput.value;
+    sendChatQuestion(question);
     promptInput.value = '';
 });

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import br.com.luiz.todolist.domain.dto.chat.ChatRequest;
-import br.com.luiz.todolist.domain.dto.chat.ChatResponse;
+import br.com.luiz.todolist.domain.dto.chat.ChatRequestData;
+import br.com.luiz.todolist.domain.dto.chat.ChatResponseData;
 import br.com.luiz.todolist.domain.model.MessageModel;
 import br.com.luiz.todolist.infra.service.ChatService;
 
@@ -37,8 +37,8 @@ public class ChatController {
     @PostMapping("/chat")
     public ResponseEntity<MessageModel> chat(@RequestBody String prompt) {
         try {
-            ChatRequest requestDTO = new ChatRequest(model, chatService.getPrompt(prompt));
-            ChatResponse responseDTO = restTemplate.postForObject(apiUrl, requestDTO, ChatResponse.class);
+            ChatRequestData requestDTO = new ChatRequestData(model, chatService.getPrompt(prompt));
+            ChatResponseData responseDTO = restTemplate.postForObject(apiUrl, requestDTO, ChatResponseData.class);
             if (requestDTO == null || responseDTO.getChoices() == null || responseDTO.getChoices().isEmpty())
                 return ResponseEntity.badRequest().body(new MessageModel("user", "erro na consulta"));
             return ResponseEntity.ok(responseDTO.getChoices().get(0).getMessage());

@@ -94,3 +94,70 @@ export function sendChat() {
 
             <button type="button" onclick="createTask()">Create Task</button>
         </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+async function registerUser() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    const email = document.getElementById('email').value;
+
+    const userData = {
+        username: username,
+        password: password,
+        email: email
+    };
+
+    try {
+        const response = await fetch('http://localhost:8080/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        });
+
+        if (!response.ok) {
+            throw new Error('Ocorreu um erro');
+        }
+
+        const data = await response.json();
+
+        setTimeout(() => {
+            window.location.href = './pages/main.html';
+        }, 3000);
+
+        console.log(data);
+    } catch (error) {
+        console.error('Ocorreu um erro na operação fetch:', error);
+    }
+}
+
+   <div class="form__field">
+                        <label for="login__username"><i class="fas fa-user"></i><span class="hidden">Username</span></label>
+                        <input id="username" type="text" name="username" class="form__input" placeholder="Username"
+                            required>
+                    </div>

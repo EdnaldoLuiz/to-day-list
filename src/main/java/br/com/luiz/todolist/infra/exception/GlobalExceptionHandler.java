@@ -11,8 +11,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handleException(Exception e) {
-        // Adicione detalhes ao log se necessário
         e.printStackTrace();
+        e.getMessage();
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Ocorreu um erro interno no servidor.");
     }
 
@@ -20,6 +20,4 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMostSpecificCause().getMessage());
     }
-
-    // Adicione outros handlers conforme necessário
 }

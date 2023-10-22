@@ -1,36 +1,38 @@
-async function registerUser() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const email = document.getElementById('email').value;
+async function loginUser() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
-    const userData = {
-        username: username,
-        password: password,
-        email: email
+    const loginData = {
+        login: email,
+        password: password
     };
 
     try {
-        const response = await fetch('http://localhost:8080/users/register', {
+        const response = await fetch('http://localhost:8080/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(userData)
+            body: JSON.stringify(loginData)
         });
 
-        if (!response.ok) {
-            throw new Error('Ocorreu um erro');
+        if (response.ok) {
+            const data = await response.json();
+            const token = data.token;
+
+            localStorage.setItem('jwt_token', token);
+
+            if (token) {
+                window.location.href = './pages/main.html';
+            } else {
+                alert('Token JWT inválido');
+            }
+        } else {
+            console.error('Erro ao fazer login:', response.statusText);
         }
-
-        const data = await response.json();
-
-        setTimeout(() => {
-            window.location.href = './pages/main.html';
-        }, 3000);
-
-        console.log(data);
     } catch (error) {
-        console.error('Ocorreu um erro na operação fetch:', error);
+        console.error('Erro ao fazer login:', error);
     }
 }
 
+document.querySelector('button').addEventListener('click', loginUser);

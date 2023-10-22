@@ -5,10 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 public record UserRegister(
 
     @NotBlank
-    String username,
-
-    @NotBlank
-    String email,
+    String login,
 
     @NotBlank
     String password) {}
