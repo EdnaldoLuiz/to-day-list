@@ -1,37 +1,51 @@
-const apiUrl = 'http://localhost:8080';
+import { apiUrl } from "./environment/environment.js";
 
-// Função para verificar a existência e validade do token
-function checkToken() {
-    const token = localStorage.getItem('jwt_token'); // Certifique-se de que esta chave corresponda à usada para armazenar o token
+function getUserEmailFromToken() {
+    const token = localStorage.getItem('jwt_token');
     if (token) {
-        // Verifique se o token está presente e é válido (pode depender de sua lógica)
-        return true;
+        const tokenParts = token.split('.');
+        if (tokenParts.length === 3) {
+            const payload = JSON.parse(atob(tokenParts[1]));
+            return payload.sub; 
+        }
     }
-    return false;
+    return null;
 }
+// ...
 
-// Função para criar uma tarefa
+// ...
+
 async function createTask() {
+    const authToken = localStorage.getItem('jwt_token');
+    const userEmail = getUserEmailFromToken();
+
     if (checkToken()) {
         try {
             const taskForm = document.getElementById('taskForm');
             const formData = new FormData(taskForm);
 
-            const taskData = {};
-            formData.forEach((value, key) => {
-                taskData[key] = value;
-            });
+            const taskData = {
+                description: formData.get('description'),
+                title: formData.get('title'),
+                priority: formData.get('priority'),
+                startAt: formData.get('startAt'),
+                endAt: formData.get('endAt'),
+                userLogin: userEmail, // Adicione o email do usuário aqui
+            };
+
+            console.log('TaskData:', taskData); // Adicione esta linha para verificar o objeto taskData
 
             const response = await fetch(`${apiUrl}/tasks/create`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`
+                    'Authorization': `Bearer ${authToken}`
                 },
                 body: JSON.stringify(taskData),
             });
 
             const data = await response.json();
+            console.log('Response:', data); // Adicione esta linha para verificar a resposta do servidor
             console.log('Task created:', data);
 
             await fetchTaskList();
@@ -40,14 +54,17 @@ async function createTask() {
         }
     } else {
         console.error('Token JWT não encontrado ou inválido. O usuário não está autenticado.');
-        // Lidar com o redirecionamento para a página de login ou exibição de mensagem de erro
     }
 }
 
+document.getElementById('createTask').addEventListener('click', createTask);
+
 async function fetchTaskList() {
-    if (checkToken()) {
+    const userEmail = getUserEmailFromToken();
+
+    if (userEmail) {
         try {
-            const response = await fetch(`${apiUrl}/tasks/get`, {
+            const response = await fetch(`${apiUrl}/tasks/get/${userEmail}`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`
                 }
@@ -61,6 +78,11 @@ async function fetchTaskList() {
             data.forEach(task => {
                 const listItem = document.createElement('li');
                 listItem.className = 'taskItem';
+                
+                 const deleteIcon = document.createElement('i');
+    deleteIcon.className = 'fas fa-trash-alt'; // Classe do ícone de deletar
+    deleteIcon.style.cursor = 'pointer';
+    deleteIcon.addEventListener('click', () => deleteTask(task.id));
 
                 const checkbox = document.createElement('input');
                 checkbox.type = 'checkbox';
@@ -88,6 +110,7 @@ async function fetchTaskList() {
                 detailsContainer.appendChild(title);
                 detailsContainer.appendChild(description);
 
+                listItem.appendChild(deleteIcon);
                 listItem.appendChild(checkbox);
                 listItem.appendChild(detailsContainer);
 
@@ -101,4 +124,28 @@ async function fetchTaskList() {
     }
 }
 
+async function deleteTask(taskId) {
+    if (checkToken()) {
+        try {
+            const response = await fetch(`${apiUrl}/tasks/${taskId}`, {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`
+                }
+            });
+
+            if (response.status === 200) {
+                console.log('Task deleted successfully');
+                await fetchTaskList(); // Atualiza a lista de tarefas após a exclusão
+            } else {
+                console.error('Error deleting task');
+            }
+        } catch (error) {
+            console.error('Error deleting task:', error);
+        }
+    } else {
+        console.error('Token JWT não encontrado ou inválido. O usuário não está autenticado.');
+    }
+}
+   
 window.addEventListener('load', fetchTaskList);

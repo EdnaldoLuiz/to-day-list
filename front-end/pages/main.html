@@ -29,12 +29,19 @@
         </div>
 
         <div class="header">
-            <form class="add">
-                <input type="text" name="add" placeholder="Add a new task...">
-                <div class="input-buttons">
-                    <button class="add-todo"><i class="fas fa-plus"></i></button>
-                </div>
+            <form id="taskForm">
+                <input type="text" id="title" name="title" placeholder="Title">
+                <textarea id="description" name="description" placeholder="Description"></textarea>
+                <select id="priority" name="priority">
+                    <option value="BAIXA">Low</option>
+                    <option value="MEDIA">Medium</option>
+                    <option value="ALTA">High</option>
+                </select>
+                <input type="datetime-local" id="startAt" name="startAt">
+                <input type="datetime-local" id="endAt" name="endAt">
+                <button type="button" id="createTask">Create Task</button>
             </form>
+            
         </div>
 
         <div class="task">
@@ -46,7 +53,7 @@
         </div>
 
         <script src="/js/chat.js"></script>
-        <script src="/js/task.js"></script>
+        <script type="module" src="/js/task.js"></script>
 </body>
 
 </html>
