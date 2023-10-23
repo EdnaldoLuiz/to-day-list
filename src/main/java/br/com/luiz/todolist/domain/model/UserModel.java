@@ -26,6 +26,9 @@ public class UserModel implements UserDetails {
     private String login;
     private String senha;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<TaskModel> tasks;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("Usuario"));

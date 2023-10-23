@@ -9,6 +9,7 @@ import br.com.luiz.todolist.domain.model.TaskModel;
 
 @Repository
 public interface ITaskRepository extends JpaRepository<TaskModel, Long> {
-    List<TaskModel> findByIdUser(Long userId);
-}
+    
+    List<TaskModel> findByUserLogin(String login);
 
+}

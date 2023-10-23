@@ -29,7 +29,7 @@ public class TaskModel {
   private LocalDateTime endAt;
   private Priority priority;
 
-  private Long idUser;
+  private String userLogin;
 
   @CreationTimestamp
   private LocalDateTime createdAt;
@@ -40,5 +40,6 @@ public class TaskModel {
     this.startAt = request.startAt();
     this.endAt = request.endAt();
     this.priority = request.priority();
+    this.userLogin = request.userLogin();
   }
 }
