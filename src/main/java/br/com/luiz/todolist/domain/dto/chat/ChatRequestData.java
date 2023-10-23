@@ -19,4 +19,8 @@ public class ChatRequestData {
         messages = new ArrayList<>();
         messages.add(new MessageModel("user", prompt));
     }
+
+    public static String getPrompt(String question) {
+        return question;
+    }
 }

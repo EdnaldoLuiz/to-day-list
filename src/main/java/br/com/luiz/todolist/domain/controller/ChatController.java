@@ -15,7 +15,6 @@ import org.springframework.web.client.RestTemplate;
 import br.com.luiz.todolist.domain.dto.chat.ChatRequestData;
 import br.com.luiz.todolist.domain.dto.chat.ChatResponseData;
 import br.com.luiz.todolist.domain.model.MessageModel;
-import br.com.luiz.todolist.infra.service.ChatService;
 
 @RestController
 @RequestMapping
@@ -31,13 +30,10 @@ public class ChatController {
     @Value("${openai.api.url}")
     private String apiUrl;
 
-    @Autowired
-    private ChatService chatService;
-
     @PostMapping("/chat")
     public ResponseEntity<MessageModel> chat(@RequestBody String prompt) {
         try {
-            ChatRequestData requestDTO = new ChatRequestData(model, chatService.getPrompt(prompt));
+            ChatRequestData requestDTO = new ChatRequestData(model, ChatRequestData.getPrompt(prompt));
             ChatResponseData responseDTO = restTemplate.postForObject(apiUrl, requestDTO, ChatResponseData.class);
             if (requestDTO == null || responseDTO.getChoices() == null || responseDTO.getChoices().isEmpty())
                 return ResponseEntity.badRequest().body(new MessageModel("user", "erro na consulta"));
