@@ -8,4 +8,7 @@ public record UserRegister(
     String login,
 
     @NotBlank
-    String password) {}
+    String password,
+    
+    @NotBlank
+    String username) {}
