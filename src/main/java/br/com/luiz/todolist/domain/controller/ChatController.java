@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import br.com.luiz.todolist.domain.dto.chat.ChatRequestData;
 import br.com.luiz.todolist.domain.dto.chat.ChatResponseData;
 import br.com.luiz.todolist.domain.model.MessageModel;
+import br.com.luiz.todolist.infra.exception.InvalidChatMessageException;
 
 @RestController
 @RequestMapping
