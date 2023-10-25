@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.luiz.todolist.domain.dto.task.TaskRequestData;
 import br.com.luiz.todolist.domain.model.TaskModel;
 import br.com.luiz.todolist.domain.repository.ITaskRepository;
+import br.com.luiz.todolist.infra.exception.TaskNotFoundException;
 
 @RestController
 @RequestMapping("/tasks")
@@ -31,16 +32,17 @@ public class TaskController {
         return ResponseEntity.status(HttpStatus.OK).body(createdTask);
     }
 
-    @GetMapping("/get/{login}")
+    @GetMapping("/list/{login}")
     public ResponseEntity<List<TaskModel>> list(@PathVariable String login) {
         var tasks = taskRepository.findByUserLogin(login);
         return ResponseEntity.status(HttpStatus.OK).body(tasks);
     }
 
     @DeleteMapping("/{taskId}")
-    public void delete(@PathVariable Long taskId) {
+    public ResponseEntity<Void> delete(@PathVariable Long taskId) {
         TaskModel task = taskRepository.findById(taskId)
-        .orElseThrow(() -> new RuntimeException("Task não encontrada"));
+        .orElseThrow(() -> new TaskNotFoundException("Task não encontrada"));
         taskRepository.delete(task);
+        return ResponseEntity.noContent().build();
     }
 }
