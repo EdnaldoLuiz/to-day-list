@@ -55,8 +55,8 @@ public class AuthController {
         if (user != null && passwordEncoder.matches(loginData.password(), user.getPassword())) {
             var tokenJWT = tokenService.gerarToken(user);
             return ResponseEntity.ok(new TokenData(tokenJWT));
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 }

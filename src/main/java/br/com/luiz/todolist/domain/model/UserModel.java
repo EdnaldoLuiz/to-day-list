@@ -25,23 +25,13 @@ public class UserModel implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String username;
     private String login;
     private String password;
-    private String username;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("Usuario"));
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return login;
     }
 
     @Override
@@ -65,8 +55,8 @@ public class UserModel implements UserDetails {
     }
 
     public UserModel(UserRegister register) {
+        this.username = register.username();
         this.login = register.login();
         this.password = register.password();
-        this.username = register.username();
     }
 }

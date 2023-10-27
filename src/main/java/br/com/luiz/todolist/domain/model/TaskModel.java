@@ -21,10 +21,10 @@ public class TaskModel {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private String description;
 
   @Column(length = 50)
   private String title;
+  private String description;
   private LocalDateTime startAt;
   private LocalDateTime endAt;
   private Priority priority;

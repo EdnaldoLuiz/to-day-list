@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,7 +28,7 @@ public class TaskController {
 
     @PostMapping("/create")
     public ResponseEntity<TaskModel> create(@RequestBody TaskRequestData task) {
-        TaskModel taskModel = new TaskModel(task);
+        var taskModel = new TaskModel(task);
         var createdTask = taskRepository.save(taskModel);
         return ResponseEntity.status(HttpStatus.OK).body(createdTask);
     }
@@ -36,6 +37,13 @@ public class TaskController {
     public ResponseEntity<List<TaskModel>> list(@PathVariable String login) {
         var tasks = taskRepository.findByUserLogin(login);
         return ResponseEntity.status(HttpStatus.OK).body(tasks);
+    }
+
+    @PutMapping("/{taskId}")
+    public ResponseEntity<TaskModel> update(@RequestBody TaskRequestData task) {
+        var taskModel = new TaskModel(task);
+        var updatedTask = taskRepository.save(taskModel);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedTask);
     }
 
     @DeleteMapping("/{taskId}")
