@@ -1,206 +1,180 @@
+@import url(style.css);
+
+a {
+  color: var(--primary-blue);
+}
+
+body {
+  background: linear-gradient(45deg, rgba(200, 2, 162, 0.8), rgba(2, 174, 199, 0.8)) fixed;
+  margin: 0;
+  height: 100vh;
+  color: var(--primary-white);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+}
+
 .align {
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
   flex-direction: column;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
   justify-content: center;
+  align-items: center;
 }
 
 .grid {
   margin: 0 auto;
+  z-index: 1;
 }
 
 .hidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
   position: absolute;
   width: 1px;
+  height: 1px;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
 }
 
-.icon {
-  display: inline-block;
-  fill: #606468;
-  font-size: 16px;
-  font-size: 1rem;
-  height: 1em;
-  vertical-align: middle;
-  width: 1em;
+.brand_logo_container {
+  position: absolute;
+  width: 90px;
+  top: 11%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: var(--main-gradient) fixed;
+  padding: 0.4rem;
+  text-align: center;
+  z-index: 3;
 }
 
-body {
-  background-color: #2c3338;
-  color: #606468;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
-  font-size: 0.875rem;
-  font-weight: 400;
-  height: 100%;
-  line-height: 1.5;
-  margin: 0;
-  min-height: 100vh;
+.brand_logo {
+  border-radius: 50%;
+  padding: 10px;
+  background: var(--primary-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-a {
-  color: #eee;
-  outline: 0;
-  text-decoration: none;
+.brand_logo_container-login {
+  position: absolute;
+  width: 90px;
+  top: 17%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: var(--main-gradient);
+  padding: 0.4rem;
+  text-align: center;
+  z-index: 3;
 }
 
-input {
-  background-image: none;
-  border: 0;
-  color: inherit;
-  font: inherit;
-  outline: 0;
-  padding: 0;
+.brand_logo-login {
+  border-radius: 50%;
+  padding: 10px;
+  background:  var(--primary-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.brand_logo img,
+.brand_logo-login img {
+    width: 100%;
 }
 
 .form {
   text-align: center;
-  padding: 1rem;
-  border-radius: .5rem;
-  background-color: #1f2325;
+  padding: 30px 30px 20px 30px;
+  border-radius: 0.5rem;
+  background-color: rgba(0, 0, 0, 0.6);
   box-shadow: rgba(0, 0, 0, 0.2) 0px 7px 29px 0px;
+  z-index: 2;
 }
 
 .form__field {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
+  flex-direction: column;
   margin: 24px 14px;
   width: 26rem;
+  position: relative;
 }
 
-.form__input {
-  -webkit-box-flex: 1;
-  -ms-flex: 1;
+.form__field label {
+  text-align: left;
+  font-size: 1.4rem;
+  border: 2px solid red;
+  border: unset;
+  width: fit-content;
+  border-radius: 10px;
+  padding: .2rem .5rem;
+  font-weight: bold;
+  position: absolute;
+  top: 4px;
+  left: 10px;
+  color: var(--primary-white);
+  background: var(--main-gradient);
+}
+
+.form__field input {
+  margin-top: 15px;
   flex: 1;
-}
-
-.login {
-  color: #eee;
-}
-
-.login label,
-.login input[type='text'],
-.login input[type='email'],
-.login input[type='password'],
-.login button {
-  border-radius: 0.25rem;
-  padding: 16px;
-  padding: 1rem;
-}
-
-.login label {
-  background-color: #363b41;
-  border-bottom-right-radius: 0;
-  border-top-right-radius: 0;
-  padding-left: 20px;
-  padding-left: 1.25rem;
-  padding-right: 20px;
-  padding-right: 1.25rem;
-}
-
-.login input[type='password'],
-.login input[type='text'],
-.login input[type='email'] {
   background-color: #3b4148;
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  border: none;
+  color: var(--primary-white);
 }
 
-.login input[type='password']:focus,
-.login input[type='password']:hover,
-.login input[type='email']:focus,
-.login input[type='email']:hover,
-.login input[type='text']:focus,
-.login input[type='text']:hover {
-  background-color: #434a52;
+.form__field p {
+  font-size: 1.2rem;
+}
+
+.form__field input:focus {
+  outline: none;
+}
+
+input:invalid:focus + .error {
+  visibility: visible;
+  opacity: 1;
+}
+
+input:invalid {
+  border-bottom-color: red;
+}
+
+input + .error {
+  display: block;
+  visibility: hidden;
+  opacity: 0;
+  position: relative;
+  height: 14px;
+  font-size: 14px;
+  color: red;
+  text-align: left;
+  margin-top: .1rem;
 }
 
 .login button {
-  background-color: #ea4c88;
-  color: #eee;
   font-weight: 700;
   margin: 0 auto;
+  font-size: 1.7rem;
   width: 100px;
-  text-transform: uppercase;
-}
-
-.login button:focus,
-.login button:hover {
-  background-color: #d44179;
+  padding: 1rem;
+  border-radius: 20px;
+  color: #E0DEDE;
+  border: unset;
+  background: var(--main-gradient);
+  cursor: pointer;
 }
 
 .text--center {
   text-align: center;
-}
-
-
-
-
-
-
-.modal {
-  text-align: center;
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  visibility: hidden;
-  transform: scale(1.1);
-  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
-}
-
-.modal-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 1rem 1.5rem;
-  width: 24rem;
-  border-radius: 0.5rem;
-}
-
-.modal-content img {
-  width: 130px;
-}
-
-.close-button {
-  width: 1.5rem;
-  line-height: 1.5rem;
-  text-align: center;
-  cursor: pointer;
-  color: #fff;
-  border-radius: 0.25rem;
-  background-color: rgb(90, 190, 99);
-  padding: 5px 10px;
-}
-
-.close-button:hover {
-  background-color: rgb(51, 163, 60);
-}
-
-.show-modal {
-  opacity: 1;
-  visibility: visible;
-  transform: scale(1.0);
-  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }

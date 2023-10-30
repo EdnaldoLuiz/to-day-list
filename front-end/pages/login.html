@@ -9,52 +9,46 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/auth.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/auth.css">
 </head>
 
 <body>
 
     <body class="align">
 
-        <div class="brand_logo_container">
-            <div class="brand_logo">
+        <div class="brand_logo_container-login">
+            <div class="brand_logo-login">
                 <img src="/assets/imgs/todo-list.png" alt="Logo">
             </div>
         </div>
 
 
         <form method="POST" class="form login">
-            <div class="form__field">
-                <label for="username">Seu nome:</label>
-                <input id="username" type="text" name="username" minlength="3" maxlength="30" required>
-                <span class="error"></span>
-            </div>
-            
+
             <div class="form__field">
                 <label for="email">Seu email:</label>
                 <input id="email" type="email" name="email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required>
                 <span class="error"></span>
             </div>
-            
+
             <div class="form__field">
                 <label for="password">Sua senha:</label>
                 <input id="password" type="password" name="password" minlength="8" required>
                 <span class="error"></span>
             </div>
-            
 
             <div class="form__field">
-                <button type="button">Registrar</button>
+                <button type="button">Entrar</button>
             </div>
 
             <div class="form__field">
-                <p>Já possui uma conta? <a href="/pages/login.html">Faça login</a></p>
+                <p>Ainda não possui uma conta? <a href="/index.html">Faça seu registro</a></p>
             </div>
             	
         </form>
     </body>
-    <script type="module" src="/js/auth/register-form.js"></script>
+    <script type="module" src="/js/auth/login-form.js"></script>
 </body>
 
 </html>
