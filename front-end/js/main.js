@@ -1,6 +1,5 @@
-import { sendChat } from "./chat.js";
+import { createTask } from "./task/create-tasks.js";
+import { fetchTaskList } from "./task/get-tasks.js";
 
-document.getElementById('sendChatButton').addEventListener('click', () => {
-    console.log('Botão clicado');
-    sendChat();
-});
+document.getElementById('createTask').addEventListener('click', createTask);
+window.addEventListener('load', fetchTaskList);
