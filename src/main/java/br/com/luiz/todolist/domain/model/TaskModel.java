@@ -4,16 +4,12 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import br.com.luiz.todolist.domain.dto.task.TaskRequestData;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -32,11 +28,6 @@ public class TaskModel {
   private LocalDateTime startAt;
   private LocalDateTime endAt;
   private Priority priority;
-
-  @JsonIgnore
-  @ManyToOne
-  @JoinColumn(name = "user_login", insertable = false, updatable = false)
-  private UserModel user;
 
   @Column(name = "user_login")
   private String userLogin;

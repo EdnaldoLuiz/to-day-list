@@ -29,10 +29,6 @@ public class UserModel implements UserDetails {
     private String login;
     private String password;
 
-    @OneToMany
-    @JoinColumn(name = "user_login", referencedColumnName = "login", insertable = false, updatable = false)
-    private List<TaskModel> tasks;
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("Usuario"));
