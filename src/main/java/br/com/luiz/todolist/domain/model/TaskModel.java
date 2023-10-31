@@ -8,11 +8,13 @@ import org.hibernate.annotations.CreationTimestamp;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.luiz.todolist.domain.dto.task.TaskRequestData;
+import br.com.luiz.todolist.domain.dto.task.TaskUpdateData;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.Valid;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -49,5 +51,23 @@ public class TaskModel {
     this.endAt = request.endAt();
     this.priority = request.priority();
     this.userLogin = request.userLogin();
+  }
+
+  public void updateTask(@Valid TaskUpdateData data) {
+    if (data.title() != null) {
+      this.title = data.title();
+    }
+    if (data.description() != null) {
+      this.description = data.description();
+    }
+    if (data.startAt() != null) {
+      this.startAt = data.startAt();
+    }
+    if (data.endAt() != null) {
+      this.endAt = data.endAt();
+    }
+    if (data.priority() != null) {
+      this.priority = data.priority();
+    }
   }
 }

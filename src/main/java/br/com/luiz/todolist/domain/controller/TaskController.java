@@ -15,9 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.luiz.todolist.domain.dto.task.TaskRequestData;
+import br.com.luiz.todolist.domain.dto.task.TaskResponseData;
+import br.com.luiz.todolist.domain.dto.task.TaskUpdateData;
 import br.com.luiz.todolist.domain.model.TaskModel;
 import br.com.luiz.todolist.domain.repository.ITaskRepository;
 import br.com.luiz.todolist.infra.exception.TaskNotFoundException;
+import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/tasks")
@@ -27,10 +31,10 @@ public class TaskController {
     private ITaskRepository taskRepository;
 
     @PostMapping("/create")
-    public ResponseEntity<TaskModel> create(@RequestBody TaskRequestData task) {
+    public ResponseEntity<TaskResponseData> create(@RequestBody @Valid TaskRequestData task) {
         var taskModel = new TaskModel(task);
         var createdTask = taskRepository.save(taskModel);
-        return ResponseEntity.status(HttpStatus.OK).body(createdTask);
+        return ResponseEntity.ok(new TaskResponseData(createdTask));
     }
 
     @GetMapping("/list/{login}")
@@ -39,14 +43,16 @@ public class TaskController {
         return ResponseEntity.status(HttpStatus.OK).body(tasks);
     }
 
-    @PutMapping("/{taskId}")
-    public ResponseEntity<TaskModel> update(@RequestBody TaskRequestData task) {
-        var taskModel = new TaskModel(task);
-        var updatedTask = taskRepository.save(taskModel);
-        return ResponseEntity.status(HttpStatus.OK).body(updatedTask);
+    @PutMapping
+    @Transactional
+    public ResponseEntity<TaskResponseData> update(@RequestBody @Valid TaskUpdateData task) {
+        var taskModel = taskRepository.getReferenceById(task.id());
+        taskModel.updateTask(task);
+        return ResponseEntity.ok(new TaskResponseData(taskModel));
     }
 
     @DeleteMapping("/{taskId}")
+    @Transactional
     public ResponseEntity<Void> delete(@PathVariable Long taskId) {
         TaskModel task = taskRepository.findById(taskId)
         .orElseThrow(() -> new TaskNotFoundException("Task não encontrada"));
