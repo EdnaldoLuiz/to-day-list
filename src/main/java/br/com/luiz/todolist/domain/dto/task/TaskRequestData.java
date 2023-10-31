@@ -1,6 +1,6 @@
 package br.com.luiz.todolist.domain.dto.task;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import br.com.luiz.todolist.domain.model.Priority;
 import jakarta.validation.constraints.Future;
@@ -15,10 +15,10 @@ public record TaskRequestData(
     String description,
 
     @Future
-    LocalDateTime startAt,
+    LocalTime startAt,
 
     @Future
-    LocalDateTime endAt,
+    LocalTime endAt,
 
     @NotNull
     Priority priority,

@@ -1,8 +1,11 @@
 package br.com.luiz.todolist.domain.model;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.luiz.todolist.domain.dto.task.TaskRequestData;
 import jakarta.persistence.Column;
@@ -25,8 +28,12 @@ public class TaskModel {
   @Column(length = 50)
   private String title;
   private String description;
-  private LocalDateTime startAt;
-  private LocalDateTime endAt;
+
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+  private LocalTime startAt;
+
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm")
+  private LocalTime endAt;
   private Priority priority;
 
   @Column(name = "user_login")
