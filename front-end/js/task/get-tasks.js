@@ -4,62 +4,54 @@ import { deleteTask } from "./delete-tasks.js";
 
 export async function fetchTaskList() {
     const userEmail = getUserEmailFromToken();
+    if (!userEmail) return;
 
-    if (userEmail) {
-        const response = await fetch(`${apiUrl}/tasks/list/${userEmail}`, {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`
-            }
+    const response = await fetch(`${apiUrl}/tasks/list/${userEmail}`, {
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`
+        }
+    });
+
+    const data = await response.json();
+    const tasksList = document.getElementById('tasksList');
+    tasksList.innerHTML = '';
+
+    data.forEach(task => {
+        const { title, description, startAt, endAt, priority, id } = task;
+
+        const listItem = document.createElement('li');
+        listItem.className = 'taskItem';
+
+        listItem.innerHTML = `
+            <i class="fas fa-trash-alt icon-remove icons" style="cursor: pointer;"></i>
+            <i class="fa-solid fa-pen-to-square icon-update icons" style="cursor: pointer;"></i>
+            <input type="checkbox" class="taskCheckbox">
+            <div class="taskDetails">
+                <span class="taskTitle">${title}</span>
+                <span class="taskDescription">${description}</span>
+            </div>
+            <div class="taskDateContainer">
+                <span class="taskTime">${startAt} - ${endAt}</span>
+                <i class="fa-regular fa-clock time-icon"></i>
+            </div>
+        `;
+
+        if (priority === 'BAIXA') {
+            listItem.classList.add('taskPriorityLow');
+        } else if (priority === 'MEDIA') {
+            listItem.classList.add('taskPriorityMedium');
+        } else if (priority === 'ALTA') {
+            listItem.classList.add('taskPriorityHigh');
+        }
+
+        const deleteIcon = listItem.querySelector('.fa-trash-alt');
+        const updateIcon = listItem.querySelector('.fa-pen-to-square');
+
+        deleteIcon.addEventListener('click', async () => {
+            await deleteTask(id);
+            listItem.style.display = 'none';
         });
 
-        const data = await response.json();
-
-        const tasksList = document.getElementById('tasksList');
-        tasksList.innerHTML = '';
-
-        data.forEach(task => {
-            const listItem = document.createElement('li');
-            listItem.className = 'taskItem';
-
-            const deleteIcon = document.createElement('i');
-            deleteIcon.className = 'fas fa-trash-alt';
-            deleteIcon.style.cursor = 'pointer';
-            deleteIcon.addEventListener('click', async () => {
-                await deleteTask(task.id);
-                location.reload(); // Recarrega a página após a exclusão
-            });
-
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.className = 'taskCheckbox';
-
-            const detailsContainer = document.createElement('div');
-            detailsContainer.className = 'taskDetails';
-
-            const title = document.createElement('span');
-            title.className = 'taskTitle';
-            title.textContent = task.title;
-
-            const description = document.createElement('span');
-            description.className = 'taskDescription';
-            description.textContent = task.description;
-
-            if (task.priority === 'BAIXA') {
-                listItem.classList.add('taskPriorityLow');
-            } else if (task.priority === 'MEDIA') {
-                listItem.classList.add('taskPriorityMedium');
-            } else if (task.priority === 'ALTA') {
-                listItem.classList.add('taskPriorityHigh');
-            }
-
-            detailsContainer.appendChild(title);
-            detailsContainer.appendChild(description);
-
-            listItem.appendChild(deleteIcon);
-            listItem.appendChild(checkbox);
-            listItem.appendChild(detailsContainer);
-
-            tasksList.appendChild(listItem);
-        });
-    }
+        tasksList.appendChild(listItem);
+    });
 }
