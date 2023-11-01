@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/chat.css">
     <link rel="stylesheet" href="/css/task.css">
-    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/task/create-task.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -22,27 +22,43 @@
             <aside class="chatbar">
                 <form id="chatForm">
                     <input type="text" id="promptInput" placeholder="Digite sua pergunta">
-                    <button><i class="fa-solid fa-play"></i></button>
+                    <button class="chat__button"><i class="fa-solid fa-play"></i></button>
                 </form>
                 <div id="responseContainer"></div>
             </aside>
         </div>
 
         <div class="header">
-            <form id="taskForm">
-                <input type="text" id="title" name="title" placeholder="Title">
-                <textarea id="description" name="description" placeholder="Description"></textarea>
-                <select id="priority" name="priority">
-                    <option value="BAIXA">Low</option>
-                    <option value="MEDIA">Medium</option>
-                    <option value="ALTA">High</option>
-                </select>
-                <input type="datetime-local" id="startAt" name="startAt">
-                <input type="datetime-local" id="endAt" name="endAt">
-                <button type="button" id="createTask">Create Task</button>
-            </form>
-            
+            <h1>Criar Tasks</h1>
+            <div class="create-task">
+                <div class="form-group">
+                    <label for="title">Título:</label>
+                    <input type="text" id="title">
+                </div>
+                <div class="form-group">
+                    <label for="description">Descrição:</label>
+                    <textarea id="description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="startAt">Início:</label>
+                    <input type="time" id="startAt" placeholder="Data de Início">
+                </div>
+                <div class="form-group">
+                    <label for="endAt">Término:</label>
+                    <input type="time" id="endAt" placeholder="Data de Término">
+                </div>
+                <div class="form-group">
+                    <label for="priority">Prioridade:</label>
+                    <select id="priority" class="priority__select">
+                        <option value="BAIXA">Baixa</option>
+                        <option value="MEDIA">Média</option>
+                        <option value="ALTA">Alta</option>
+                    </select>
+                </div>
+                <button id="createTask">+</button>
+            </div>
         </div>
+        
 
         <div class="task">
             <div class="todoList">
@@ -53,6 +69,7 @@
         </div>
 
         <script src="/js/chat.js"></script>
+        <script src="/js/test.js"></script>
         <script type="module" src="/js/main.js"></script>
 </body>
 
