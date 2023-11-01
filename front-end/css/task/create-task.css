@@ -1,0 +1,93 @@
+.header {
+    grid-area: header;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    color: var(--font-color);
+}
+
+.header h1 {
+    font-size: 2.8rem;
+    margin: 1rem 0;
+}
+
+.header label {
+    font-size: 1.5rem;
+}
+
+.create-task {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    padding: 10px;
+    height: 8rem;
+    background: var(--primary-purple);
+    margin: 0 auto;
+    border-radius: 5px;
+    border: 2px solid transparent;
+    transition: .5s;
+    background: rgba(179, 132, 202, 0.211);
+}
+
+.create-task:hover {
+    border: 2px solid var(--border-color);
+    transition: .5;
+}
+
+.create-task h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.create-task input[type="text"],
+.create-task input[type="time"],
+.create-task select {
+    padding: 5px;
+    border: 2px solid var(--primary-white);
+        margin: 5px;
+    max-height: 33px;
+    min-height: 33px;
+    background: inherit;
+    color: var(--font-color);
+    border-radius: 5px;
+}
+
+select {
+    text-align: center;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    width: 80px;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+    filter: invert(100%) sepia(0%) saturate(3207%) hue-rotate(130deg) brightness(95%) contrast(80%);
+}
+
+.create-task *:focus {
+    outline: unset;
+}
+
+.create-task textarea {
+    padding: 5px;
+    border: 2px solid var(--primary-white);
+    margin: 5px;
+    resize: none;
+    height: 33px;
+    background: inherit;
+    color: var(--font-color);
+    border-radius: 5px;
+}
+
+.create-task button {
+    color: inherit;
+    border: none;
+    border-radius: 100%;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 2rem;
+}

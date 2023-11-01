@@ -1,7 +1,0 @@
-.header {
-    grid-area: header;
-    border: 2px solid red;  
-    background-color: #1d1c1c;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-}

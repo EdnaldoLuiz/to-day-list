@@ -1,8 +1,8 @@
 .chat {
     grid-area: chat;
-    background-color: #1d1c1c;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    background-color: hsla(240, 56%, 9%, 0.796);
 }
 
 #chatForm {
@@ -10,53 +10,66 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #383636;
     outline: none;
-}
-
-#chatForm input:focus {
-    background-color: #363434;
-    
+    color: var(--font-color);
 }
 
 #promptInput {
     flex: 1;
     padding: 8px;
+    height: 50px;
     border: none;
     border-radius: 5px 0 0 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    background-color: #333131;
-    color: rgba(255, 255, 255, 0.758);
+    color: inherit;
     outline: none;
+    font-size: 2rem;
+    background: var(--input-background);
 }
 
-button {
-    padding: 8px 12px;
+#promptInput:focus {
+
+}
+
+.chat__button {
+    padding: 12.9px 18px;
+    margin-bottom: .5px;
     border: none;
-    background-color: #4CAF50;
-    color: white;
+    color: inherit;
     border-radius: 0 5px 5px 0;
     cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
+    font-size: 2.2em;
 }
 
 #responseContainer {
     overflow-y: auto;
     padding: 10px;
     font-size: 1.3rem;
-    color: rgba(255, 255, 255, 0.758);
+    color: inherit;
+    font-size: 1.8rem;
+}
+
+.chat__helper {
+    display: block;
+    text-align: center;
+}
+
+.chat__helper img {
+    width: 40px;
+    padding: 5px;
+    background: var(--outer-gradient);
+    border-radius: 5px;
 }
 
 #responseContainer div {
     margin-bottom: 10px;
+    border: 2px solid var(--border-color);
+    background: var(--transparent-purple);
     border-radius: 5px;
-    border: .2rem solid #383636;
-    padding: .4rem;
+    padding: .9rem;
+    color: var(--font-color);
 }
 
 #responseContainer strong {
-    color: #4CAF50;
+    color: var(--secondary-purple);
 }
