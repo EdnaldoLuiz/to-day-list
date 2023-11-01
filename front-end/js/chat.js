@@ -10,38 +10,29 @@ function checkToken() {
 
 async function sendChatQuestion(question) {
     if (checkToken()) {
-        try {
-            const requestData = {
-                prompt: question
-            };
+        const requestData = {
+            prompt: question
+        };
 
-            const response = await fetch(`${apiUrls}/chat`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`
-                },
-                body: JSON.stringify(requestData),
-            });
+        const response = await fetch(`${apiUrls}/chat`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('jwt_token')}`
+            },
+            body: JSON.stringify(requestData),
+        });
 
-            if (response.ok) {
-                const responseData = await response.json();
-                const responseContainer = document.getElementById('responseContainer');
+        if (response.ok) {
+            const responseData = await response.json();
+            const responseContainer = document.getElementById('responseContainer');
 
-                // Criar um novo elemento div para exibir a resposta com estilo semelhante ao código antigo
-                const message = document.createElement('div');
-                message.innerHTML = `<strong>Assistente: </strong>${responseData.content}`;
-                message.classList.add('chat-message'); // Adicione uma classe de estilo
+            const message = document.createElement('div');
+            message.innerHTML = `<strong class="chat__helper"><img src="/assets/imgs/to-do-list-white.png"><br>Assistente: </strong>${responseData.content}`;
+            message.classList.add('chat-message');
 
-                responseContainer.appendChild(message);
-            } else {
-                console.error('Erro ao enviar pergunta:', response.statusText);
-            }
-        } catch (error) {
-            console.error('Erro ao enviar pergunta:', error);
+            responseContainer.appendChild(message);
         }
-    } else {
-        console.error('Token JWT não encontrado ou inválido. O usuário não está autenticado.');
     }
 }
 
