@@ -1,5 +1,5 @@
 a {
-  color: var(--primary-blue);
+  color: var(--secondary-purple);
 }
 
 body {
@@ -42,7 +42,7 @@ body::before {
 .brand_logo_container {
   position: absolute;
   width: 90px;
-  top: 11%;
+  top: 9%;
   left: 50%;
   transform: translateX(-50%);
   border-radius: 50%;
@@ -53,9 +53,12 @@ body::before {
 }
 
 .brand_logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--transparent-purple);
   border-radius: 50%;
   padding: 10px;
-  background: var(--font-color);
 }
 
 .brand_logo_container-login {
@@ -68,12 +71,16 @@ body::before {
   padding: 0.4rem;
   text-align: center;
   z-index: 3;
+  background: var(--outer-gradient);
 }
 
 .brand_logo-login {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: var(--transparent-purple);
+  border-radius: 50%;
+  padding: 10px;
 }
 
 .brand_logo img,
@@ -107,7 +114,7 @@ body::before {
   border: unset;
   width: fit-content;
   border-radius: 10px;
-  padding: .2rem .5rem;
+  padding: .3rem .5rem;
   font-weight: bold;
   position: absolute;
   top: 4px;
@@ -124,6 +131,7 @@ body::before {
   padding: 1rem;
   border: none;
   color: var(--font-color);
+  padding-top: 15px;
 }
 
 .form__field p {
