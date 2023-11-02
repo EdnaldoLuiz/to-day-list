@@ -1,21 +1,24 @@
-<h1 align=center>to-do-list</h1>
+<h1 align=center>to-day-list</h1>
 <div align=center>
 	<img width=100px src="https://github.com/EdnaldoLuiz/to-day-list/assets/112354693/d72f5023-9d4b-4345-8bc0-c56195d0bc37">
 </div>
 
 <h1>Front-end 💻 </h1>
 
-<h2>Tela de Registro:</h2>
+<h2>Tela de Registro ✏️</h2>
+<p>Tela de registro aonde é necessario seu nome, e-mail e uma senha de 8 caracteres</p>
 <div align=center>
 	<img width=100% src="https://github.com/EdnaldoLuiz/to-day-list/assets/112354693/643bfa19-ab87-4e8c-8187-876f3f9055ac">
 </div>
 
-<h2>Tela de Login:</h2>
+<h2>Tela de Login 🔒</h2>
+<p>Tela aonde deve ser passada as informações de login previamente cadastradas</p>
 <div align=center>
 	<img width=100% src="https://github.com/EdnaldoLuiz/to-day-list/assets/112354693/e2a72db1-fd94-49d2-873f-4660595745aa">
 </div>
 
-<h2>Tela Principal:</h2>
+<h2>Tela Principal 🪟</h2>
+<p>Tela principal com a criação, listagem, atualização e exclusão das tasks, e na barra da direita um ChatBot usando com tecnologia do ChatGPT 3.5</p>
 <div align=center>
 	<img width=100% src="https://github.com/EdnaldoLuiz/to-day-list/assets/112354693/d426e75e-6d6c-42a2-ab23-84f05a14a9db">
 </div>
