@@ -1,6 +1,7 @@
 import { apiUrl } from "../environment/environment.js";
 import { getUserEmailFromToken } from "../auth/user-token.js";
 import { deleteTask } from "./delete-tasks.js";
+import { openUpdateModal } from "./update-task.js";
 
 export async function fetchTaskList() {
     const userEmail = getUserEmailFromToken();
@@ -50,6 +51,10 @@ export async function fetchTaskList() {
         deleteIcon.addEventListener('click', async () => {
             await deleteTask(id);
             listItem.style.display = 'none';
+        });
+
+        updateIcon.addEventListener('click', () => {
+            openUpdateModal(task);
         });
 
         tasksList.appendChild(listItem);

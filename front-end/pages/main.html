@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/chat.css">
-    <link rel="stylesheet" href="/css/task.css">
     <link rel="stylesheet" href="/css/task/create-task.css">
+    <link rel="stylesheet" href="/css/task/list-task.css">
+    <link rel="stylesheet" href="/css/task/update-task.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -29,47 +30,88 @@
         </div>
 
         <div class="header">
-            <h1>Criar Tasks</h1>
-            <div class="create-task">
-                <div class="form-group">
-                    <label for="title">Título:</label>
-                    <input type="text" id="title">
+            <h1>Crie suas Tasks</h1>
+            <form id="taskForm">
+                <div class="create-task">
+                    <div class="form-group">
+                        <label for="title">Título:</label>
+                        <input type="text" id="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Descrição:</label>
+                        <textarea id="description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="startAt">Início:</label>
+                        <input type="time" id="startAt" placeholder="Data de Início">
+                    </div>
+                    <div class="form-group">
+                        <label for="endAt">Término:</label>
+                        <input type="time" id="endAt" placeholder="Data de Término">
+                    </div>
+                    <div class="form-group">
+                        <label for="priority">Prioridade:</label>
+                        <select id="priority" class="priority__select">
+                            <option value="BAIXA">Baixa</option>
+                            <option value="MEDIA">Média</option>
+                            <option value="ALTA">Alta</option>
+                        </select>
+                    </div>
+                    <button id="createTask">+</button>
                 </div>
-                <div class="form-group">
-                    <label for="description">Descrição:</label>
-                    <textarea id="description"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="startAt">Início:</label>
-                    <input type="time" id="startAt" placeholder="Data de Início">
-                </div>
-                <div class="form-group">
-                    <label for="endAt">Término:</label>
-                    <input type="time" id="endAt" placeholder="Data de Término">
-                </div>
-                <div class="form-group">
-                    <label for="priority">Prioridade:</label>
-                    <select id="priority" class="priority__select">
-                        <option value="BAIXA">Baixa</option>
-                        <option value="MEDIA">Média</option>
-                        <option value="ALTA">Alta</option>
-                    </select>
-                </div>
-                <button id="createTask">+</button>
-            </div>
+            </form>
         </div>
-        
 
         <div class="task">
             <div class="todoList">
                 <div class="content">
+                    
+                    <div class="modal" id="editTaskModal">
+                        <div class="modal-content">
+                            <span class="close" id="closeEditTaskModal">&times;</span>
+                            <h2>Editar Task</h2>
+                            <form id="editTaskForm">
+                                <input type="hidden" id="editTaskId" name="id">
+                                <div class="form-group">
+                                    <label for="editTaskTitle" class="update__form__label">Título</label>
+                                    <input type="text" id="editTaskTitle" name="title" placeholder="Title">
+                                </div>
+                                <div class="form-group">
+                                    <label for="editTaskDescription" class="update__form__label">Descrição</label>
+                                    <textarea id="editTaskDescription" name="description"
+                                        placeholder="Description"></textarea>
+                                </div>
+                                <div class="form-group flex-container">
+                                    <div>
+                                        <label for="editTaskStartAt" class="update__form__label">Hora início</label>
+                                        <input type="time" id="editTaskStartAt" name="startAt">
+                                    </div>
+                                    <div>
+                                        <label for="editTaskEndAt" class="update__form__label">Hora término</label>
+                                        <input type="time" id="editTaskEndAt" name="endAt">
+                                    </div>
+                                    <div>
+                                        <label for="editTaskPriority" class="update__form__label">Prioridade</label>
+                                        <select id="editTaskPriority" name="priority">
+                                            <option value="BAIXA">Baixa</option>
+                                            <option value="MEDIA">Média</option>
+                                            <option value="ALTA">Alta</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" id="saveTaskChanges">Salvar mudanças</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
                     <ul id="tasksList"></ul>
                 </div>
             </div>
         </div>
 
         <script src="/js/chat.js"></script>
-        <script src="/js/test.js"></script>
         <script type="module" src="/js/main.js"></script>
 </body>
 

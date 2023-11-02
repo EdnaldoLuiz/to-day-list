@@ -27,10 +27,6 @@
     background: var(--input-background);
 }
 
-#promptInput:focus {
-
-}
-
 .chat__button {
     padding: 12.9px 18px;
     margin-bottom: .5px;

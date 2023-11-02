@@ -1,0 +1,13 @@
+{
+    "name": "to-do-list",
+    "version": "1.0.0",
+    "description": "Gerencie suas tarefas diarias de maneira fácil e tranquila!",
+    "main": "index.js",
+    "scripts": {
+        "start": "http-server -p 3333"
+    },
+    "dependencies": {},
+    "devDependencies": {},
+    "author": "Ednaldo Luiz",
+    "license": "Licença"
+}

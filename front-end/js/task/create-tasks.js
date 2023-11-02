@@ -25,30 +25,20 @@ export async function createTask() {
                 userLogin: userEmail,
             };
 
-            try {
-                const response = await fetch(`${apiUrl}/tasks/create`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${authToken}`
-                    },
-                    body: JSON.stringify(taskData),
-                });
+            const response = await fetch(`${apiUrl}/tasks/create`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${authToken}`
+                },
+                body: JSON.stringify(taskData),
+            });
 
-                if (response.ok) {
-                    const jsonData = await response.json();
-                    console.log(jsonData);
-                    await fetchTaskList();
-                } else {
-                    const errorData = await response.text();
-                    console.error(errorData);
-                }
-            } catch (error) {
-                console.error(error);
+            if (response.ok) {
+                const jsonData = await response.json();
+                document.getElementById('taskForm').reset();
+                await fetchTaskList();
             }
-        } else {
-            // Lógica para lidar com campos em branco
-            console.error('Por favor, preencha os campos obrigatórios.');
         }
     }
 }

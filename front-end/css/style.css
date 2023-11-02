@@ -53,3 +53,10 @@ button {
 button:hover {
     filter: brightness(1.1);
 }
+
+select option {
+    margin: 40px;
+    background: var(--transparent-purple);
+    color: var(--font-color);
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  }

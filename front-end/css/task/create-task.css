@@ -62,6 +62,8 @@ select {
     text-indent: 1px;
     text-overflow: '';
     width: 80px;
+    background: none;
+    overflow: hidden;
 }
 
 input[type="time"]::-webkit-calendar-picker-indicator {
