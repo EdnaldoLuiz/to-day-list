@@ -145,7 +145,7 @@
 <p> Foi usado a criptografia do algoritimo HMAC256 para criptografar as senhas dos usuários e armazenalas no banco de dados da maneira correta seguindo os padrões estabelecidos pela <a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm" target="_blank">LGPD</a>. </p>
 
 <div>
-    <img width=100% src="https://github.com/EdnaldoLuiz/backup/assets/112354693/378281fd-a886-4634-8bac-bc1eb9aa30fc">
+    <img width=100% src="https://github.com/EdnaldoLuiz/to-day-list/assets/112354693/02070440-542a-4812-9ea7-1d2d99fcfb83">
 </div>
 
 <h2>Login 🔒 </h2>
