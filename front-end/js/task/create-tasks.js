@@ -37,7 +37,7 @@ export async function createTask() {
             if (response.ok) {
                 const jsonData = await response.json();
                 document.getElementById('taskForm').reset();
-                await fetchTaskList();
+                fetchTaskList();
             }
         }
     }
