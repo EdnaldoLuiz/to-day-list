@@ -1,0 +1,13 @@
+version: '3.1'
+services:
+  db:
+    image:  mysql:8.0.13
+    environment:
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: 06022003
+      MYSQL_DATABASE: todolist
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/MYSQL_DATABASE
+      SPRING_DATABASE_USERNAME: root
+      SPRING_DATABASE_PASSWORD: 06022003
+    ports:
+      - 3307:3306
