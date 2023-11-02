@@ -325,6 +325,17 @@ direction RL
 </dependency>
 ```
 
+<h3>Docker Compose </h3>
+<p>biblioteca usada em conjunto com o docker-compose.yml para criação do container com a imagem do MySQL</p>
+
+```xml
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-docker-compose</artifactId>
+	<version>3.1.0</version>
+</dependency>
+```
+
 <h2>Tech Stack Utilizada 🛠️ </h2>
 
 <table align="center" width=1000px>
