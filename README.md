@@ -1,28 +1,29 @@
 <h1 align=center>to-day-list</h1>
 <div align=center>
-	<img width=100px src="https://github.com/EdnaldoLuiz/to-day-list/assets/112354693/d72f5023-9d4b-4345-8bc0-c56195d0bc37">
+	<img width=120px src="https://github.com/EdnaldoLuiz/to-day-list/assets/112354693/b277580a-7c1f-4e4c-80b8-c30e758dfe15">
 </div>
 
 <h1>Índice 📚</h1>
 <ol>
-    <li><a href="#front-end">Front-end 💻</a></li>
+    <li><a href="#front-end">Front-end</a></li>
     <ul>
-        <li><a href="#tela-de-registro">Tela de Registro ✏️</a></li>
-        <li><a href="#tela-de-login">Tela de Login 🔒</a></li>
-        <li><a href="#tela-principal">Tela Principal 🪟</a></li>
+        <li><a href="#tela-de-registro">Tela de Registro</a></li>
+        <li><a href="#tela-de-login">Tela de Login</a></li>
+        <li><a href="#tela-principal">Tela Principal</a></li>
     </ul>
-    <li><a href="#back-end">Back-end ⚙️</a></li>
+    <li><a href="#back-end">Back-end</a></li>
     <ul>
-        <li><a href="#api-rest">API Rest 🌐</a></li>
-        <li><a href="#registrar">Registrar ✏️</a></li>
-        <li><a href="#login">Login 🔒</a></li>
+        <li><a href="#api-rest">API Rest</a></li>
+        <li><a href="#registrar">Registrar</a></li>
+        <li><a href="#login">Login</a></li>
     </ul>
-    <li><a href="#bcrypt">BCrypt 🔏</a></li>
-    <li><a href="#criacao-de-tasks">Criação de Tasks ☑️</a></li>
-    <li><a href="#diagrama-de-classes">Diagrama de Classes 📝</a></li>
-    <li><a href="#chat-assistente">Chat Assistente 💬</a></li>
-    <li><a href="#principais-bibliotecas">Principais Bibliotecas 📚</a></li>
-    <li><a href="#tech-stack-utilizada">Tech Stack Utilizada 🛠️</a></li>
+    <li><a href="#bcrypt">BCrypt</a></li>
+    <li><a href="#criacao-de-tasks">Criação de Tasks</a></li>
+    <li><a href="#diagrama-de-classes">Diagrama de Classes</a></li>
+    <li><a href="#chat-assistente">Chat Assistente</a></li>
+    <li><a href="#principais-bibliotecas">Principais Bibliotecas</a></li>
+    <li><a href="#tech-stack-utilizada">Tech Stack Utilizada</a></li>
+    <li><a href="#clonar-repositorio">Executar o Projeto</a></li>
 </ol>
 
 <h1 id="front-end">Front-end 💻</h1>
@@ -396,3 +397,39 @@ direction RL
         </tr>
     </tbody>
 </table>
+
+<h2 id="clonar-repositorio">Executar o Projeto</h2> 
+
+```bash
+git clone https://github.com/EdnaldoLuiz/to-day-list.git
+cd to-day-list
+```
+
+<h3>Requisitos</h3> 
+
+<ul>
+   <li><a href="https://www.oracle.com/java/technologies/javase-downloads.html">Java Development Kit (JDK)</a></li>
+   <li><a href="https://nodejs.org/">Node.js</a></li>
+   <li><a href="https://www.npmjs.com/">npm</a></li>
+   <li><a href="https://www.docker.com/">Docker</a></li>
+</ul>
+
+<h3>Rodar o Back-end</h3>
+
+```bash
+./mvnw spring-boot:run
+```
+
+	Back-end: http://localhost:8080
+	MySQL: http://localhost:3307
+
+> ⚠️ OBS: o docker-compose é iniciado junto graças a biblioteca spring-boot-docker-compose
+
+<h3>Rodar o Front-end</h3>
+
+```bash
+cd front-end
+npm run start
+```
+
+	Front-end: http://localhost:3333
