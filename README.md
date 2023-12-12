@@ -3,29 +3,51 @@
 	<img width=100px src="https://github.com/EdnaldoLuiz/to-day-list/assets/112354693/d72f5023-9d4b-4345-8bc0-c56195d0bc37">
 </div>
 
-<h1>Front-end 💻 </h1>
+<h1>Índice 📚</h1>
+<ol>
+    <li><a href="#front-end">Front-end 💻</a></li>
+    <ul>
+        <li><a href="#tela-de-registro">Tela de Registro ✏️</a></li>
+        <li><a href="#tela-de-login">Tela de Login 🔒</a></li>
+        <li><a href="#tela-principal">Tela Principal 🪟</a></li>
+    </ul>
+    <li><a href="#back-end">Back-end ⚙️</a></li>
+    <ul>
+        <li><a href="#api-rest">API Rest 🌐</a></li>
+        <li><a href="#registrar">Registrar ✏️</a></li>
+        <li><a href="#login">Login 🔒</a></li>
+    </ul>
+    <li><a href="#bcrypt">BCrypt 🔏</a></li>
+    <li><a href="#criacao-de-tasks">Criação de Tasks ☑️</a></li>
+    <li><a href="#diagrama-de-classes">Diagrama de Classes 📝</a></li>
+    <li><a href="#chat-assistente">Chat Assistente 💬</a></li>
+    <li><a href="#principais-bibliotecas">Principais Bibliotecas 📚</a></li>
+    <li><a href="#tech-stack-utilizada">Tech Stack Utilizada 🛠️</a></li>
+</ol>
 
-<h2>Tela de Registro ✏️</h2>
+<h1 id="front-end">Front-end 💻</h1>
+
+<h2 id="tela-de-registro">Tela de Registro ✏️</h2>
 <p>Tela de registro aonde é necessario seu nome, e-mail e uma senha de 8 caracteres</p>
 <div align=center>
 	<img width=100% src="https://github.com/EdnaldoLuiz/to-day-list/assets/112354693/643bfa19-ab87-4e8c-8187-876f3f9055ac">
 </div>
 
-<h2>Tela de Login 🔒</h2>
+<h2 id="tela-de-login">Tela de Login 🔒</h2>
 <p>Tela aonde deve ser passada as informações de login previamente cadastradas</p>
 <div align=center>
 	<img width=100% src="https://github.com/EdnaldoLuiz/to-day-list/assets/112354693/e2a72db1-fd94-49d2-873f-4660595745aa">
 </div>
 
-<h2>Tela Principal 🪟</h2>
+<h2 id="tela-principal">Tela Principal 🪟</h2>
 <p>Tela principal com a criação, listagem, atualização e exclusão das tasks, e na barra da direita um ChatBot usando com tecnologia do ChatGPT 3.5</p>
 <div align=center>
 	<img width=100% src="https://github.com/EdnaldoLuiz/to-day-list/assets/112354693/d426e75e-6d6c-42a2-ab23-84f05a14a9db">
 </div>
 
-<h1>Back-end ⚙️ </h1>
+<h1 id="back-end">Back-end ⚙️</h1>
 
-<h2>API Rest 🌐</h2>
+<h2 id="api-rest">API Rest 🌐</h2>
 
 <table align=center>
     <thead>
@@ -98,7 +120,7 @@
     </tbody>
 </table>
 
-<h2>Registrar ✏️ </h2>
+<h2 id="registrar">Registrar ✏️</h2>
 
 <p> É necessario passar o email e senha fornecidos durante o registro, caso seja valido, sera devolvido um Token JWT para autenticação.</p>
 
@@ -140,7 +162,7 @@
 }
 ```
 
-<h3>BCrypt 🔏 </h3>
+<h2 id="bcrypt">BCrypt 🔏</h2>
 
 <p> Foi usado a criptografia do algoritimo HMAC256 para criptografar as senhas dos usuários e armazenalas no banco de dados da maneira correta seguindo os padrões estabelecidos pela <a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm" target="_blank">LGPD</a>. </p>
 
@@ -148,7 +170,7 @@
     <img width=100% src="https://github.com/EdnaldoLuiz/to-day-list/assets/112354693/02070440-542a-4812-9ea7-1d2d99fcfb83">
 </div>
 
-<h2>Login 🔒 </h2>
+<h2 id="login">Login 🔒</h2>
 
 <p> É necessario passar o email e senha fornecidos durante o registro, caso seja valido, sera devolvido um Token JWT para autenticação.</p>
 
@@ -199,7 +221,7 @@ sequenceDiagram
 
 <hr>
 
-<h2>Criação de Tasks ☑️ </h2>
+<h2 id="criacao-de-tasks">Criação de Tasks ☑️</h2>
 
 <h3>Dados necessarios:</h3>
 
@@ -227,7 +249,7 @@ sequenceDiagram
 }
 ```
 
-<h2>Diagrama de classes 📝</h2>
+<h2 id="diagrama-de-classes">Diagrama de Classes 📝</h2>
 <p>Diagrama ilustrativo do modelo orientado a objetos dando uma breve visão de como o sistema e as entidades do banco de dados estão ligadas usando um SGBD relacional</p>
 
 ```mermaid
@@ -264,7 +286,7 @@ direction RL
 
 ```
 
-<h2>Chat Assistente 💬 </h2>
+<h2 id="chat-assistente">Chat Assistente 💬</h2>
 
 <p> Caso envie uma mensagem, ela será validade pela Api do GPT 3.5, caso ele encontre uma solução, irá enviar uma resposta. </p>
 
@@ -291,7 +313,7 @@ direction RL
 }
 ```
 
-<h2>Principais Bibliotecas 📚 </h2>
+<h2 id="principais-bibliotecas">Principais Bibliotecas 📚</h2>
 
 <h3>OpenAI GPT 3.5 </h3>
 <p>biblioteca usada para realizar conexão com a API do ChatGPT</p>
@@ -336,7 +358,7 @@ direction RL
 </dependency>
 ```
 
-<h2>Tech Stack Utilizada 🛠️ </h2>
+<h2 id="tech-stack-utilizada">Tech Stack Utilizada 🛠️</h2>
 
 <table align="center" width=1000px>
     <thead>
