@@ -251,6 +251,7 @@ sequenceDiagram
 ```
 
 <h2 id="diagrama-de-classes">Diagrama de Classes 📝</h2>
+
 <p>Diagrama ilustrativo do modelo orientado a objetos dando uma breve visão de como o sistema e as entidades do banco de dados estão ligadas usando um SGBD relacional</p>
 
 ```mermaid
@@ -316,7 +317,8 @@ direction RL
 
 <h2 id="principais-bibliotecas">Principais Bibliotecas 📚</h2>
 
-<h3>OpenAI GPT 3.5 </h3>
+<h3>OpenAI GPT 3.5 🤖</h3>
+
 <p>biblioteca usada para realizar conexão com a API do ChatGPT</p>
 
 ```xml
@@ -327,7 +329,8 @@ direction RL
 </dependency>
 ```
 
-<h3>Spring Security </h3>
+<h3>Spring Security 🔒</h3>
+
 <p>biblioteca usada para filtrar as requisições e autenticar os usuários</p>
 
 ```xml
@@ -337,7 +340,8 @@ direction RL
 </dependency>
 ```
 
-<h3>Auth0 JWT </h3>
+<h3>Auth0 JWT 🔏</h3>
+
 <p>biblioteca usada para gerar o Token JWT</p>
 
 ```xml
@@ -348,7 +352,8 @@ direction RL
 </dependency>
 ```
 
-<h3>Docker Compose </h3>
+<h3>Docker Compose 🐳</h3>
+
 <p>biblioteca usada em conjunto com o docker-compose.yml para criação do container com a imagem do MySQL</p>
 
 ```xml
